@@ -14,6 +14,7 @@ import UIKit
 class ViewController: UIViewController,UIViewControllerTransitioningDelegate {
 
     var button : UIButton?
+    var scaleView : ScaleAnimation?
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.grayColor();
@@ -28,6 +29,11 @@ class ViewController: UIViewController,UIViewControllerTransitioningDelegate {
         button?.addTarget(self, action: #selector(ViewController.btnClicked(_:)), forControlEvents: .TouchUpInside);
         self.view.addSubview(button!);
 
+        
+        scaleView = ScaleAnimation(frame: CGRectMake(100,100,100,100), circleCount:3)
+        self.view.addSubview(scaleView!);
+
+        
     }
     func btnClicked(btn : UIButton){
         print("btnClicked");
@@ -46,5 +52,14 @@ class ViewController: UIViewController,UIViewControllerTransitioningDelegate {
         let animator = Animator(style: .dismiss,location: (button?.center)!);
         return animator;
     }
+
+
+    @IBAction func startAnimation(sender: UIButton) {
+        scaleView?.startAniamtion()
+    }
+    @IBAction func stopAniamtion(sender: UIButton) {
+        scaleView?.stopAniamtion()
+    }
+
 }
 
